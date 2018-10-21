@@ -1,0 +1,8 @@
+{
+  "body": "{\"url\": \"http://tweakers.net\", \"description\": \"A website for tweakers\", \"name\": \"Tweakers\"}",
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "TEST-USER-AWS-BOOKMARKS"
+    }
+  }
+}
