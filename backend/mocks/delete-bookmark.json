@@ -1,0 +1,10 @@
+{
+  "pathParameters": {
+    "id": "5c04c2c0-d561-11e8-a3f8-4b3f71b7ff57"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "TEST-USER-AWS-BOOKMARKS"
+    }
+  }
+}

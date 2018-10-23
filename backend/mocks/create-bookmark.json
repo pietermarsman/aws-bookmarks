@@ -1,5 +1,10 @@
 {
-  "body": "{\"url\": \"http://tweakers.net\", \"description\": \"A website for tweakers\", \"name\": \"Tweakers\"}",
+  "body": {
+    "url": "http://tweakers.net",
+    "description": "A website for tweakers",
+    "name": "Tweakers",
+    "labels": ["Some label"]
+  },
   "requestContext": {
     "identity": {
       "cognitoIdentityId": "TEST-USER-AWS-BOOKMARKS"

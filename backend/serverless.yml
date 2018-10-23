@@ -1,4 +1,4 @@
-service: notes-app-api
+service: aws-bookmarks
 
 # Use the serverless-webpack plugin to transpile ES6
 plugins:
@@ -16,7 +16,7 @@ provider:
   name: aws
   runtime: nodejs8.10
   stage: prod
-  region: us-west-2
+  region: eu-west-2
 
   # 'iamRoleStatements' defines the permission policy for the Lambda function.
   # In this case Lambda functions are granted with permissions to access DynamoDB.
@@ -30,7 +30,7 @@ provider:
     - dynamodb:PutItem
     - dynamodb:UpdateItem
     - dynamodb:DeleteItem
-    Resource: "arn:aws:dynamodb:us-west-2:*:*"
+    Resource: "arn:aws:dynamodb:eu-west-2:*:*"
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
@@ -43,7 +43,7 @@ functions:
     handler: create.main
     events:
     - http:
-        path: notes
+        path: bookmarks
         method: post
         cors: true
         authorizer: aws_iam
@@ -54,7 +54,31 @@ functions:
     handler: get.main
     events:
     - http:
-        path: notes/{id}
+        path: bookmarks/{id}
         method: get
+        cors: true
+        authorizer: aws_iam
+  list:
+    handler: list.main
+    events:
+    - http:
+        path: bookmarks/
+        method: get
+        cors: true
+        authorizer: aws_iam
+  update:
+    handler: update.main
+    events:
+    - http:
+        path: bookmarks/{id}
+        method: put
+        cors: true
+        authorizer: aws_iam
+  delete:
+    handler: delete.main
+    events:
+    - http:
+        path: bookmarks/{id}
+        method: put
         cors: true
         authorizer: aws_iam

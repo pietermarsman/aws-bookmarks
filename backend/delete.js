@@ -3,26 +3,16 @@ import * as dynamoDbLib from "./libs/dynamodb-lib";
 import { success, failure } from "./libs/response-lib";
 
 export async function main(event, context, callback) {
-    let labels;
-    if (event.body.hasOwnProperty('labels')) {
-        labels = event.body.labels;
-    } else {
-        labels = {};
-    }
+    const item = {
+        userId: event.requestContext.identity.cognitoIdentityId,
+        bookmarkId: event.pathParameters.id,
+        deleted: true
+    };
 
     const params = {
         TableName: "aws-bookmarks-bookmarks",
-        Item: {
-            userId: event.requestContext.identity.cognitoIdentityId,
-            bookmarkId: uuid.v1(),
-            url: event.body.url,
-            name: event.body.name,
-            labels: [1, "a"],
-            deleted: false,
-            createdAt: Date.now()
-        }
+        Item: item
     };
-    console.log(params);
 
     try {
         await dynamoDbLib.call("put", params);
