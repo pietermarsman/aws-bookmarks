@@ -17,7 +17,7 @@ export async function main(event, context, callback) {
             bookmarkId: uuid.v1(),
             url: event.body.url,
             name: event.body.name,
-            labels: [1, "a"],
+            labels: labels,
             deleted: false,
             createdAt: Date.now()
         }
